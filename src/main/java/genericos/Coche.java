@@ -26,4 +26,12 @@ public class Coche {
         return Objects.equals(matricula, coche.matricula);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(matricula);
+    }
+
+
+
+
 }

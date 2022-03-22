@@ -28,5 +28,10 @@ public class Conductor {
         return Objects.equals(dni, conductor.dni);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(dni);
+    }
+
 
 }
