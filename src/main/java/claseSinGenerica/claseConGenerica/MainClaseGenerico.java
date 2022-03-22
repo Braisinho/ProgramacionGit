@@ -18,5 +18,6 @@ public class MainClaseGenerico {
         System.out.println("Primera llamada");
         ClaseGenerica<Double> doubleObj = new ClaseGenerica<>();
         doubleObj.classType(3.14);
+
     }
 }
