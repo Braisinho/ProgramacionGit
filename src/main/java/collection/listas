@@ -1,0 +1,12 @@
+Listas en java:
+    ArrayList
+        Los elementos estan ordenados y no se le indica tamaño, son autoincrementables.
+        Poden estar duplicados los elementos.
+        EL orden es el orden por el cual los datos se introducen.
+        Se puede hacer un sout simple sobre el nombre del ArrayList
+        Las listas pueden tener null.
+
+        add(pos, elemento) desplaza el valor que hay en esa posicion
+        set(pos, elemento) sobrescribe la posicion
+
+        Para recorrer una lista y borrarla es empezar por el final de la lista para asi que el desplazamiento no afecte

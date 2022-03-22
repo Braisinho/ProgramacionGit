@@ -1,0 +1,41 @@
+
+Las colecciones no admiten datos primitivos
+WRAPPER es un envoltorio de datos primitivos.
+
+        int to interger
+        float to Float
+        boolean to Boolean
+
+Las colecciones tengo que inicializarlas al igual que un objeto.
+
+Cuando hablamos del mismo objeto nos referimos a la direccion de memoria.
+
+Los metodos mas usados son:
+
+    int size() nos da el tamaño de una coleccion.
+    boolean isEmpty() nos dice si esta vacio o no, true si esta vacio.
+    boolean contains(Object o) nos devuelve true si la coleccion contiene el objeto "o"(Direccion de memoria).
+    boolean containsAll(Collection <?> c) nos devuelve true si la coleccion "c" esta dentro de la coleccion "this" (Subconjuntos).
+    boolean add(Object o) introduce un objeto y nos devuelve un true si puede meterla (dara false por los duplicados).
+    boolean addAll(Collection <?> c2) introduce una lista dentro de otra y nos da un true si esta se logro ejecutar.
+    boolean remove(Object o) nos da un true si ese objeto se borro correctamente. (Se le puede pasar un indice.)
+    boolean removeAll(Collection <?> c3) nos da true si borra de this la coleccion c3.
+    boolean retainAll(Collection <?> c4)  nos da true si la lista cambia, lo que hace es mantener de la lista this los elementos de la lisca c4.
+    Object[] toArray() devuelve un array de objetos correspondientes a los datos que tenemos en una collection.
+    int indexOf
+
+    Sirve para recorrer una coleccion
+
+    Iterator<E> iterator();
+    Iterator<Interger> it = collection.iterator();
+    while(it.hasNext){
+        sout(it.next())
+    }
+
+    Ahora con for each
+
+    for(Interger i : collection){
+        sout(i);
+    }
+
+    Con una lista ordenada podremos usar get(pos).
