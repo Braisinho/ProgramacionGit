@@ -23,21 +23,23 @@ public class Main {
 
         //Creamos un conjunto con solo los elementos repetidos
         TreeSet<Integer> numerosRepetidos = new TreeSet<>();
+
+        TreeSet<Integer> numerosNoRepetidos = new TreeSet<>();
         for(Integer o : arr){
             //Si no coincide el primer y último index es que están repetidas
-            if(arr.indexOf(o) != arr.lastIndexOf(o)) numerosRepetidos.add(o);
+            if(arr.indexOf(o) != arr.lastIndexOf(o)){
+                numerosRepetidos.add(o);
+            }else{
+                numerosRepetidos.add(o);
+            }
 
         }
 
         System.out.println(numerosRepetidos);
-
-        //Creamos un conjunto con solo los elementos sin repetir
-        TreeSet<Integer> numerosNoRepetidos = new TreeSet<>();
-        for(Integer o : arr){
-            //Si coincide el primer y último index es que no están repetidas
-            if(arr.indexOf(o) == arr.lastIndexOf(o)) numerosNoRepetidos.add(o);
-        }
         System.out.println(numerosNoRepetidos);
+
+
+
 
 
     }
