@@ -24,9 +24,12 @@ public class AlquilerCoche {
 
         alquileres.put(new Dupla<>(coche1,conductor1), new AlquilerHoy(16, 21, 150000));
         System.out.println(alquileres);
+
         alquileres.put(new Dupla<>(coche3,conductor2),new AlquilerHoy(14,22,165000));
         System.out.println(alquileres);
+
         alquileres.put(new Dupla<>(coche3,conductor3), new AlquilerHoy(15,16,150000));
         System.out.println(alquileres);
+
     }
 }
