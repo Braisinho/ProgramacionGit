@@ -18,6 +18,8 @@ public class Coche {
         this.color = color;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if ( this == o ) return true;
@@ -26,10 +28,12 @@ public class Coche {
         return Objects.equals(matricula, coche.matricula);
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(matricula);
     }
+
 
     @Override
     public String toString() {

@@ -8,9 +8,12 @@ import genericos.Dupla;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Main {
+public class AlquilerCoche {
+
     public static void main(String[] args) {
+
         HashMap<Dupla<Coche, Conductor>, AlquilerHoy> alquileres = new HashMap<>();
+
         Coche coche1 = new Coche("8684GKW", "Citroen", "Picaso", 2014, "Blanco");
         Coche coche2 = new Coche("4646FQR", "Ford", "Focus", 2008, "Azul");
         Coche coche3 = new Coche("8684GKW", "Mercedes", "Clase A", 2022, "Morado");

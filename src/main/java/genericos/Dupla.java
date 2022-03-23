@@ -38,11 +38,11 @@ public class Dupla<T1 , T2> {
     }
 
 
-
     @Override
     public int hashCode() {
         return Objects.hash(type1, type2);
     }
+
 
     @Override
     public String toString() {
