@@ -20,6 +20,7 @@ public class Conductor {
         this.caducidadCarnetConducir = caducidadCarnetConducir;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if ( this == o ) return true;
@@ -28,10 +29,17 @@ public class Conductor {
         return Objects.equals(dni, conductor.dni);
     }
 
+
+
     @Override
     public int hashCode() {
         return Objects.hash(dni);
     }
 
-
+    @Override
+    public String toString() {
+        return "Conductor{" +
+                "dni='" + dni + '\'' +
+                '}';
+    }
 }

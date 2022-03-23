@@ -12,4 +12,16 @@ public class AlquilerHoy {
         this.horaEntrega = horaEntrega;
         this.kilometrosIniciales = kilometrosIniciales;
     }
+
+
+    @Override
+    public String toString() {
+        return "AlquilerHoy{" +
+                "horaRecogida=" + horaRecogida +
+                ", horaEntrega=" + horaEntrega +
+                ", kilometrosIniciales=" + kilometrosIniciales +
+                '}';
+    }
+
+
 }

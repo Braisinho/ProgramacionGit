@@ -31,7 +31,9 @@ public class Coche {
         return Objects.hash(matricula);
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return "Coche{" +
+                "matricula='" + matricula;
+    }
 }

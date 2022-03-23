@@ -28,6 +28,7 @@ public class Dupla<T1 , T2> {
         this.type2 = type2;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if ( this == o ) return true;
@@ -36,8 +37,18 @@ public class Dupla<T1 , T2> {
         return type1.equals(dupla.type1) && type2.equals(dupla.type2);
     }
 
+
+
     @Override
     public int hashCode() {
         return Objects.hash(type1, type2);
+    }
+
+    @Override
+    public String toString() {
+        return "Dupla{" +
+                "type1=" + type1 +
+                ", type2=" + type2 +
+                '}';
     }
 }
