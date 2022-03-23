@@ -31,6 +31,7 @@ public class Main {
 
         System.out.println(numerosRepetidos);
 
+        //Creamos un conjunto con solo los elementos sin repetir
         TreeSet<Integer> numerosNoRepetidos = new TreeSet<>();
         for(Integer o : arr){
             //Si coincide el primer y último index es que no están repetidas
