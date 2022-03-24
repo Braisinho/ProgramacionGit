@@ -32,15 +32,10 @@ public class Main {
             }else{
                 numerosRepetidos.add(o);
             }
-
         }
 
         System.out.println(numerosRepetidos);
         System.out.println(numerosNoRepetidos);
-
-
-
-
 
     }
 }
