@@ -41,11 +41,11 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
     private Thread hilo; // Hilo de nuestro programa
     private int crecimiento = 0; // indica la cantidad de cuadraditos que debe crecer la vibora
     private Image imagen; // Para evitar el parpadeo del repaint()
-    private Graphics bufferGraphics;// Se dibuja en memoria para evitar parpadeo intermitente
+    private Graphics bufferGraphics ;// Se dibuja en memoria para evitar parpadeo intermitente
 
     private enum Direccion {
         IZQUIERDA, DERECHA, SUBE, BAJA
-    };
+    }
 
     class Punto {
 
@@ -79,6 +79,7 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
 
     @Override
     public void run() {
+        int cont = 0;
         while (activo) {
             try {
                 // dormimos el hilo durante una décima de segundo para que no se mueva tan
@@ -116,6 +117,12 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
                     // Si creciento es mayor a cero es que debemos hacer crecer la vibora
                     if (this.crecimiento > 0) {
                         this.crecimiento--;
+                        cont++;
+                        if ( cont == 2 ){
+                            bufferGraphics.setColor(Color.black);
+                            bufferGraphics.fillRect(0,0,getWidth(),getHeight());
+                            cont = 0;
+                        }
                     }
                 }
                 verificarFin();
@@ -163,8 +170,8 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
             }
             // borramos la imagen de memoria
             bufferGraphics.clearRect(0, 0, getSize().width, getSize().width);
-            // dibujar recuadro
             bufferGraphics.setColor(Color.red);
+            System.out.println(g.getColor());
             bufferGraphics.drawRect(20, 50, size().width-100, size().height-100);
             // dibujar vibora
             for (Punto punto : lista) {
