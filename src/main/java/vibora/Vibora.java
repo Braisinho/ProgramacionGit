@@ -42,6 +42,7 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
     private int crecimiento = 0; // indica la cantidad de cuadraditos que debe crecer la vibora
     private Image imagen; // Para evitar el parpadeo del repaint()
     private Graphics bufferGraphics ;// Se dibuja en memoria para evitar parpadeo intermitente
+    private int count = 0;
 
     private enum Direccion {
         IZQUIERDA, DERECHA, SUBE, BAJA
@@ -101,7 +102,6 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
                         fila++;
                         break;
                 }
-
                 repaint();
                 sePisa();
                 // insertamos la coordenada de la cabeza de la vibora en la lista
@@ -117,12 +117,6 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
                     // Si creciento es mayor a cero es que debemos hacer crecer la vibora
                     if (this.crecimiento > 0) {
                         this.crecimiento--;
-                        cont++;
-                        if ( cont == 2 ){
-                            bufferGraphics.setColor(Color.black);
-                            bufferGraphics.fillRect(0,0,getWidth(),getHeight());
-                            cont = 0;
-                        }
                     }
                 }
                 verificarFin();
@@ -155,6 +149,12 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
             colfruta = (int) (Math.random() * 50);
             filfruta = (int) (Math.random() * 50);
             this.crecimiento = 10;
+            count++;
+            if ( count == 2 ){
+                bufferGraphics.setColor(Color.yellow);
+                bufferGraphics.fillRect(0, 0, getSize().width -100, getSize().height-100);
+                count = 0;
+            }
             return true;
         } else {
             return false;
@@ -169,9 +169,10 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
                 bufferGraphics = imagen.getGraphics();
             }
             // borramos la imagen de memoria
-            bufferGraphics.clearRect(0, 0, getSize().width, getSize().width);
+            bufferGraphics.clearRect(0, 0, getSize().width, getSize().height);
+            bufferGraphics.setColor(Color.yellow);
+            bufferGraphics.fillRect(0, 0, getSize().width -100, getSize().height-100);
             bufferGraphics.setColor(Color.red);
-            System.out.println(g.getColor());
             bufferGraphics.drawRect(20, 50, size().width-100, size().height-100);
             // dibujar vibora
             for (Punto punto : lista) {
