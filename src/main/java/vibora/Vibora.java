@@ -7,9 +7,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
+import  java.util.Scanner;
 
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /*****************
  * Dado el siguiente código debes descubrir:
@@ -228,8 +229,11 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
     }
 
     public static void main(String[] args) {
+        Scanner tc = new Scanner(System.in);
         Vibora f = new Vibora();
-        f.setSize(600, 600);
+        int width = Integer.parseInt( JOptionPane.showInputDialog("Introduce el ancho"));
+        int heigth  = Integer.parseInt( JOptionPane.showInputDialog("Introduce el alto"));
+        f.setSize(width, heigth);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
