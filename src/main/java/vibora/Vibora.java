@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.LinkedList;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 import javax.swing.JFrame;
 
@@ -25,6 +27,7 @@ import javax.swing.JFrame;
  *  b) víbora (cada 2 frutas)
  *  c) fruta (cada fruta)
  * 4. ¿Cómo hacer la víbora y la manzana más grandes?
+ * hecho
  * 5. ¿Cómo implementar que el código de la fruta sea aleatorio?
  * 6. ¿Cómo hacer que si sale por la izquierda, no pierda y entre por la derecha?
  * 7. ¿Cómo cambiar el tamaño de la aplicación en pantalla?
@@ -43,6 +46,9 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
     private Image imagen; // Para evitar el parpadeo del repaint()
     private Graphics bufferGraphics ;// Se dibuja en memoria para evitar parpadeo intermitente
     private int count = 0;
+    private boolean aux = false;
+    private final Color[] arrayColores = new Color[]{Color.blue,Color.GREEN,Color.CYAN,Color.GRAY,Color.MAGENTA};
+    Color colorfruta = Color.red;
 
     private enum Direccion {
         IZQUIERDA, DERECHA, SUBE, BAJA
@@ -80,7 +86,6 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
 
     @Override
     public void run() {
-        int cont = 0;
         while (activo) {
             try {
                 // dormimos el hilo durante una décima de segundo para que no se mueva tan
@@ -117,6 +122,7 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
                     // Si creciento es mayor a cero es que debemos hacer crecer la vibora
                     if (this.crecimiento > 0) {
                         this.crecimiento--;
+
                     }
                 }
                 verificarFin();
@@ -150,11 +156,7 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
             filfruta = (int) (Math.random() * 50);
             this.crecimiento = 10;
             count++;
-            if ( count == 2 ){
-                bufferGraphics.setColor(Color.yellow);
-                bufferGraphics.fillRect(0, 0, getSize().width -100, getSize().height-100);
-                count = 0;
-            }
+            aux = true;
             return true;
         } else {
             return false;
@@ -162,16 +164,29 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
     }
 
     public void paint(Graphics g) {
+
+
         super.paint(g);
         if (!lista.isEmpty()) {
             if (imagen == null) {
                 imagen = createImage(this.getSize().width, this.getSize().height);
                 bufferGraphics = imagen.getGraphics();
             }
+            bufferGraphics.setColor(Color.white);
             // borramos la imagen de memoria
             bufferGraphics.clearRect(0, 0, getSize().width, getSize().height);
-            bufferGraphics.setColor(Color.yellow);
-            bufferGraphics.fillRect(0, 0, getSize().width -100, getSize().height-100);
+            if ( count >= 5 && count <10){
+                bufferGraphics.setColor(Color.yellow);
+
+            }
+            if ( count >= 10 && count < 15  ){
+                bufferGraphics.setColor(Color.black);
+
+            }
+            if ( count == 15 ){
+                count = 0;
+            }
+            bufferGraphics.fillRect(20, 50, getSize().width -100, getSize().height-100);
             bufferGraphics.setColor(Color.red);
             bufferGraphics.drawRect(20, 50, size().width-100, size().height-100);
             // dibujar vibora
@@ -179,7 +194,13 @@ public class Vibora extends JFrame implements Runnable, KeyListener {
                 bufferGraphics.fillRect(20 + punto.x * 10 , 50 + punto.y * 10, 8, 8);
             }
             // dibujar fruta
-            bufferGraphics.setColor(Color.blue);
+           if (aux){
+               colorfruta = arrayColores[ThreadLocalRandom.current().nextInt(0, arrayColores.length)];
+               aux = false;
+           }
+
+
+            bufferGraphics.setColor(colorfruta);
             bufferGraphics.fillRect(colfruta * 10 + 20, filfruta * 10 + 50, 8, 8);
             g.drawImage(imagen, 0, 0, this);
         }
