@@ -1,14 +1,16 @@
-package interfaces;
+package ejercicioInterfacesGraficas.ejercicio1;
+
 
 import javax.swing.*;
 
-public class Interfaz extends JFrame{
+public class Saludo extends JFrame {
 
 
-    private JButton button1;
+    private JTextField textField1;
 
-    public Interfaz(){
-        super("Hola");
+
+    public Saludo(){
+        super("Ejercicio 1");
     }
 
     public static void main(String[] args) {
@@ -16,9 +18,11 @@ public class Interfaz extends JFrame{
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Interfaz().setVisible(true);
+                new Saludo().setVisible(true);
             }
         });
     }
+
+
 
 }
