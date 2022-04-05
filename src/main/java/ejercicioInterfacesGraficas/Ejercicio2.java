@@ -2,6 +2,7 @@ package ejercicioInterfacesGraficas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.util.Iterator;
 
 public class Ejercicio2 extends JFrame {
 
@@ -59,5 +60,6 @@ public class Ejercicio2 extends JFrame {
                 lista.setVisible(true);
             }
         });
+
     }
 }
