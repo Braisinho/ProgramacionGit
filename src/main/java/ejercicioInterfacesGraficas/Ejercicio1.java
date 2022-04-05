@@ -1,11 +1,9 @@
-package ejercicioInterfacesGraficas.ejercicio1;
-
+package ejercicioInterfacesGraficas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Saludo extends JFrame {
+public class Ejercicio1 extends JFrame {
 
 
     private JTextField txf;
@@ -13,7 +11,7 @@ public class Saludo extends JFrame {
     private JLabel lbl;
 
 
-    public Saludo(){
+    public Ejercicio1(){
         super("Ejercicio 1");
         inicializar();
     }
@@ -46,7 +44,7 @@ public class Saludo extends JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Saludo primerSaludo = new Saludo();
+                Ejercicio1 primerSaludo = new Ejercicio1();
                 primerSaludo.setSize(600,600);
                 primerSaludo.setVisible(true);
             }
@@ -56,3 +54,5 @@ public class Saludo extends JFrame {
 
 
 }
+
+
