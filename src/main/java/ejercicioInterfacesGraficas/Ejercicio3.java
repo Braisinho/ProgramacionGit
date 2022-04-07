@@ -1,14 +1,12 @@
 package ejercicioInterfacesGraficas;
 
 import javax.swing.*;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+
+
 
 public class Ejercicio3 extends JFrame {
 
@@ -211,7 +209,6 @@ public class Ejercicio3 extends JFrame {
                 spnCopia.setValue(spn.getValue());
             }
         });
-
 
     }
 
