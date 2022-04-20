@@ -50,7 +50,7 @@ public class Primero extends JFrame {
         aceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                salida.setText("Animales elegidos : " + getMensagge());
+                salida.setText("Animales seleccionados : " + getMensagge());
             }
         });
     }
