@@ -34,13 +34,18 @@ public class Ejercicio3 extends JFrame {
     private JSpinner spnCopia;
 
 
+
     public Ejercicio3(){
         super("Imitador");
         inicializar();
+        eventos();
     }
 
     private void inicializar(){
         setLayout(null);
+
+        setLocation(700,300);
+
 
         lbl = new JLabel("Original");
         lbl.setBounds(10,0,100, 20);
@@ -118,7 +123,6 @@ public class Ejercicio3 extends JFrame {
         add(ckb2);
         add(ckb3);
 
-
         ckbCopia1 = new JCheckBox("Opcion 1");
         ckbCopia2 = new JCheckBox("Opcion 2");
         ckbCopia3 = new JCheckBox("Opcion 3");
@@ -143,7 +147,7 @@ public class Ejercicio3 extends JFrame {
         spnCopia.setEnabled(false);
         cbxCopia.setEnabled(false);
 
-        eventos();
+
     }
 
     private void eventos(){
@@ -211,7 +215,6 @@ public class Ejercicio3 extends JFrame {
         });
 
     }
-
 
 
     public static void main(String[] args) {
