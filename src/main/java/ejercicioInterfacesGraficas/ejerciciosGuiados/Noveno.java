@@ -28,6 +28,7 @@ public class Noveno extends JFrame {
         spn = new JSpinner();
         spn.setBounds(20,60,150,50);
         add(spn);
+
     }
 
     private void eventos(){
