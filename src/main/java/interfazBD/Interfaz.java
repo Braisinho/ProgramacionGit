@@ -1,11 +1,11 @@
 package interfazBD;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 
 public class Interfaz extends JFrame {
 
@@ -26,6 +26,8 @@ public class Interfaz extends JFrame {
     public JLabel lbl7;
     public JLabel lbl8;
     public JButton button;
+    public JButton salir;
+    public JButton consultarDatos;
 
 
 
@@ -105,24 +107,48 @@ public class Interfaz extends JFrame {
         button = new JButton("Guardar");
         button.setBounds(300,400,100,20);
         add(button);
+
+        salir = new JButton("Salir");
+        salir.setBounds(10,400,100,20);
+        add(salir);
+
+        consultarDatos = new JButton("Consultar");
+        consultarDatos.setBounds(150,400,120,20);
+        add(consultarDatos);
     }
 
     private void eventos(){
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Date fechaNacimiento = null;
-                Date fechaEmpresa = null;
-                try {
-                    fechaNacimiento = (Date) new SimpleDateFormat("yyyy/MM/dd").parse(txt4.getText());
-                    fechaEmpresa = (Date) new SimpleDateFormat("yyyy/MM/dd").parse(txt8.getText());
-                    TrabajadorBD.insertar(new Trabajador(txt1.getText(),txt2.getText(),txt3.getText(),fechaNacimiento,txt5.getText(),txt6.getText(),Double.parseDouble(txt7.getText()) ,fechaEmpresa));
-                } catch (ParseException ex) {
-                    ex.printStackTrace();
-                }
-
+                Date fechaNacimiento = Date.valueOf(txt4.getText());
+                Date fechaEmpresa = Date.valueOf(txt8.getText());
+                TrabajadorBD.insertar(new Trabajador(txt1.getText(),txt2.getText(),txt3.getText(),fechaNacimiento,txt5.getText(),txt6.getText(),Double.parseDouble(txt7.getText()) ,fechaEmpresa));
             }
         });
+
+        salir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConexionBD.cerrarConexion();
+                System.exit(0);
+            }
+        });
+
+        consultarDatos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Trabajador p =  TrabajadorBD.solicitarDatos(txt1.getText());
+                txt2.setText(p.getNombre());
+                txt3.setText(p.getPuesto());
+                txt4.setText(p.getFechaNacimiento().toString());
+                txt5.setText(p.getDireccion());
+                txt6.setText(p.getTelefono());
+                txt7.setText(p.getSalario()+"");
+                txt8.setText(p.getFechaComienzoEmpresa().toString());
+            }
+        });
+
     }
 
     public static void main(String[] args) {

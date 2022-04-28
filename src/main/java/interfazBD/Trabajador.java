@@ -12,6 +12,7 @@ public class Trabajador {
     private double salario;
     private Date fechaComienzoEmpresa;
 
+
     public Trabajador(String dni, String nombre, String puesto, Date fechaNacimiento, String direccion, String telefono, double salario, Date fechaComienzoEmpresa) {
         this.dni = dni;
         this.nombre = nombre;

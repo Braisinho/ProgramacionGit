@@ -12,7 +12,7 @@ public class ConexionBD {
 
     private ConexionBD(){
         try {
-            String connectionStr = "jdbc:mysql://127.0.0.1:3306/Proyectos?user=myslqMF&password=abc123.";
+            String connectionStr = "jdbc:mysql://127.0.0.1:3306/Proyecto?user=myslqMF&password=abc123.";
             con = DriverManager.getConnection(connectionStr);
         }catch (SQLException e) {
                 e.printStackTrace();
@@ -24,5 +24,18 @@ public class ConexionBD {
             new ConexionBD();
         }
         return con;
+    }
+
+    public static boolean cerrarConexion(){
+        try {
+            if(con != null){
+                con.close();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
