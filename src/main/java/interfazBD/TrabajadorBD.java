@@ -1,12 +1,11 @@
 package interfazBD;
 
-import arrayList.Persona;
 
 import java.sql.*;
 
 public class TrabajadorBD {
 
-    public static void insertar(Trabajador tr){
+    public static boolean insertar(Trabajador tr){
         Connection connection = ConexionBD.getInstance();
         Statement stmt = null;
 
@@ -15,9 +14,12 @@ public class TrabajadorBD {
             stmt = connection.createStatement();
             stmt.executeUpdate("INSERT INTO Trabajador values('"+tr.getDni()+"', '"+tr.getNombre()+"'," +
                     " '"+tr.getPuesto()+"','"+tr.getFechaNacimiento()+"','"+tr.getDireccion()+"','"+tr.getTelefono()+
-                    "'," +tr.getSalario()+",'"+tr.getFechaComienzoEmpresa()+"')");
+                    "'," +tr.getSalario()+ ",'"+tr.getFechaComienzoEmpresa()+"')");
+            return true;
+
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (stmt != null) {

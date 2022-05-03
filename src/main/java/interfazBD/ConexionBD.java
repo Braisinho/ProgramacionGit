@@ -1,10 +1,8 @@
 package interfazBD;
-import java.math.BigDecimal;
-import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.ResultSet;
+
 
 public class ConexionBD {
 
@@ -38,4 +36,5 @@ public class ConexionBD {
         }
         return true;
     }
+
 }

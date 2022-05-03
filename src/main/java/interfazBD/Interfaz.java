@@ -1,7 +1,6 @@
 package interfazBD;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -123,7 +122,20 @@ public class Interfaz extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Date fechaNacimiento = Date.valueOf(txt4.getText());
                 Date fechaEmpresa = Date.valueOf(txt8.getText());
-                TrabajadorBD.insertar(new Trabajador(txt1.getText(),txt2.getText(),txt3.getText(),fechaNacimiento,txt5.getText(),txt6.getText(),Double.parseDouble(txt7.getText()) ,fechaEmpresa));
+                boolean seguridad;
+                seguridad = TrabajadorBD.insertar(new Trabajador(txt1.getText(),txt2.getText(),txt3.getText(),fechaNacimiento,txt5.getText(),txt6.getText(),Double.parseDouble(txt7.getText()) ,fechaEmpresa));
+                if ( seguridad ){
+                    txt1.setText(null);
+                    txt2.setText(null);
+                    txt3.setText(null);
+                    txt4.setText(null);
+                    txt5.setText(null);
+                    txt6.setText(null);
+                    txt7.setText(null);
+                    txt8.setText(null);
+                }else{
+                    JOptionPane.showMessageDialog(null,"El trabajador no se introdujo en la base de datos");
+                }
             }
         });
 
@@ -139,13 +151,18 @@ public class Interfaz extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Trabajador p =  TrabajadorBD.solicitarDatos(txt1.getText());
-                txt2.setText(p.getNombre());
-                txt3.setText(p.getPuesto());
-                txt4.setText(p.getFechaNacimiento().toString());
-                txt5.setText(p.getDireccion());
-                txt6.setText(p.getTelefono());
-                txt7.setText(p.getSalario()+"");
-                txt8.setText(p.getFechaComienzoEmpresa().toString());
+                if ( p != null ){
+                    txt2.setText(p.getNombre());
+                    txt3.setText(p.getPuesto());
+                    txt4.setText(p.getFechaNacimiento().toString());
+                    txt5.setText(p.getDireccion());
+                    txt6.setText(p.getTelefono());
+                    txt7.setText(p.getSalario()+"");
+                    txt8.setText(p.getFechaComienzoEmpresa().toString());
+                }else{
+                    JOptionPane.showMessageDialog(null,"El DNI: " +txt1.getText() + " no se encuentra en la base de datos");
+                }
+
             }
         });
 
