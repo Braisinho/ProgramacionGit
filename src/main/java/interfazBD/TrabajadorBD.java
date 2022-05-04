@@ -2,6 +2,7 @@ package interfazBD;
 
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class TrabajadorBD {
 
@@ -51,5 +52,25 @@ public class TrabajadorBD {
             e.printStackTrace();
         }
         return tr;
+    }
+
+    public static ArrayList<Trabajador> solicitarTablaTrabajadores(){
+        Connection connection = ConexionBD.getInstance();
+        Statement stmt = null;
+        Trabajador tr = null;
+        ArrayList<Trabajador> arraySalida = new ArrayList<>();
+        ResultSet rs = null;
+        try {
+            stmt = connection.createStatement();
+            rs = stmt.executeQuery("SELECT * from Trabajador");
+            while (rs.next()) {
+                arraySalida.add(new Trabajador(rs.getString("DNI"),rs.getString("Nombre"),rs.getString("Puesto"),
+                        rs.getDate("Fecha_Nacimiento"),rs.getString("Direccion"),rs.getString("Telefono"),
+                        rs.getDouble("Salario"),rs.getDate("Fecha_com_Empresa")));
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return arraySalida;
     }
 }

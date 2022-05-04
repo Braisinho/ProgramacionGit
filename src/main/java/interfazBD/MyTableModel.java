@@ -1,4 +1,4 @@
-package miTablaLeñadores;
+package interfazBD;
 
 import interfazBD.Trabajador;
 
@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class MyTableModel extends AbstractTableModel {
 
-    private String[] columNames = {"DNI", "Nombre" ,"Puesto", "Fecha_Nacimiento" ,"Direccion",
+    private final String[] columNames = {"DNI", "Nombre" ,"Puesto", "Fecha_Nacimiento" ,"Direccion",
             "Telefono", "Salario", "Fecha_Com_Empresa"  };
 
     private static final int dni = 0;
@@ -19,12 +19,9 @@ public class MyTableModel extends AbstractTableModel {
     private static final int direccion = 4;
     private static final int telefono = 5;
     private static final int salario = 6;
-    private static final int Fecha_con_empresa = 7;
+    private static final int fecha_con_empresa = 7;
 
-    private Trabajador[] data_Trabajadores = {
-            new Trabajador("46289242A", "Brais", "Jefe", Date.valueOf("1999-10-23"),"A estrada","606613625", 12500,Date.valueOf("2020-10-23")),
-            new Trabajador("46289242B", "Brais", "Jefe", Date.valueOf("1999-10-23"),"A estrada","606613625", 12500,Date.valueOf("2020-10-23"))
-    };
+    private static Trabajador[] data_Trabajadores;
 
     private ArrayList<Trabajador> al_trabajadores = new ArrayList<>(Arrays.asList(data_Trabajadores));
 
@@ -38,6 +35,10 @@ public class MyTableModel extends AbstractTableModel {
         return columNames.length;
     }
 
+    public String getColimnName(int col){
+        return columNames[col];
+    }
+
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Trabajador t = data_Trabajadores[rowIndex];
@@ -49,18 +50,18 @@ public class MyTableModel extends AbstractTableModel {
             case direccion: return t.getDireccion();
             case telefono: return t.getTelefono();
             case salario: return t.getSalario();
-            case Fecha_con_empresa: return t.getFechaComienzoEmpresa();
+            case fecha_con_empresa: return t.getFechaComienzoEmpresa();
             default: return "";
         }
     }
 
-    public Class getColumClass(int c){
+    public Class<?> getColumClass(int c){
         return getValueAt(0,c).getClass();
     }
 
     public boolean isCellEditable(int row, int col){
-        return col > 2;
-
+        return col >= 2;
     }
+
 
 }

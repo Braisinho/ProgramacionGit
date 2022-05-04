@@ -8,32 +8,38 @@ import java.sql.Date;
 
 public class Interfaz extends JFrame {
 
-    public JTextField txt1;
-    public JTextField txt2;
-    public JTextField txt3;
-    public JTextField txt4;
-    public JTextField txt5;
-    public JTextField txt6;
-    public JTextField txt7;
-    public JTextField txt8;
-    public JLabel lbl1;
-    public JLabel lbl2;
-    public JLabel lbl3;
-    public JLabel lbl4;
-    public JLabel lbl5;
-    public JLabel lbl6;
-    public JLabel lbl7;
-    public JLabel lbl8;
-    public JButton button;
-    public JButton salir;
-    public JButton consultarDatos;
 
+    private JTextField txt1;
+    private JTextField txt2;
+    private JTextField txt3;
+    private JTextField txt4;
+    private JTextField txt5;
+    private JTextField txt6;
+    private JTextField txt7;
+    private JTextField txt8;
+    private JLabel lbl1;
+    private JLabel lbl2;
+    private JLabel lbl3;
+    private JLabel lbl4;
+    private JLabel lbl5;
+    private JLabel lbl6;
+    private JLabel lbl7;
+    private JLabel lbl8;
+    private JButton button;
+    private JButton salir;
+    private JButton consultarDatos;
+    private JButton tabla;
+    private static boolean visibilidad = false;
 
+    public static void setVisibilidad(boolean visibilidad) {
+        visibilidad = visibilidad;
+    }
 
     public Interfaz(){
         super("Trabajadir");
         crearObjetos();
         eventos();
+        setVisible(true);
     }
 
     private void crearObjetos(){
@@ -104,7 +110,7 @@ public class Interfaz extends JFrame {
         add(txt8);
 
         button = new JButton("Guardar");
-        button.setBounds(300,400,100,20);
+        button.setBounds(250,400,100,20);
         add(button);
 
         salir = new JButton("Salir");
@@ -112,8 +118,13 @@ public class Interfaz extends JFrame {
         add(salir);
 
         consultarDatos = new JButton("Consultar");
-        consultarDatos.setBounds(150,400,120,20);
+        consultarDatos.setBounds(120,400,120,20);
         add(consultarDatos);
+
+        tabla = new JButton("Tablas");
+        tabla.setBounds(360,400,100,20);
+        add(tabla);
+
     }
 
     private void eventos(){
@@ -166,6 +177,14 @@ public class Interfaz extends JFrame {
             }
         });
 
+        tabla.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                new InterfazTabla();
+            }
+        });
+
     }
 
     public static void main(String[] args) {
@@ -174,7 +193,6 @@ public class Interfaz extends JFrame {
             public void run() {
                 Interfaz ventana = new Interfaz();
                 ventana.setSize(500,500);
-                ventana.setVisible(true);
             }
         });
     }
