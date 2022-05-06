@@ -31,15 +31,13 @@ public class Interfaz extends JFrame {
     private JButton tabla;
     private static boolean visibilidad = false;
 
-    public static void setVisibilidad(boolean visibilidad) {
-        visibilidad = visibilidad;
-    }
+
 
     public Interfaz(){
-        super("Trabajadir");
         crearObjetos();
         eventos();
-        setVisible(true);
+
+
     }
 
     private void crearObjetos(){
@@ -133,9 +131,9 @@ public class Interfaz extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Date fechaNacimiento = Date.valueOf(txt4.getText());
                 Date fechaEmpresa = Date.valueOf(txt8.getText());
-                boolean seguridad;
-                seguridad = TrabajadorBD.insertar(new Trabajador(txt1.getText(),txt2.getText(),txt3.getText(),fechaNacimiento,txt5.getText(),txt6.getText(),Double.parseDouble(txt7.getText()) ,fechaEmpresa));
-                if ( seguridad ){
+                boolean ingresado;
+                ingresado = TrabajadorBD.insertar(new Trabajador(txt1.getText(),txt2.getText(),txt3.getText(),fechaNacimiento,txt5.getText(),txt6.getText(),Double.parseDouble(txt7.getText()) ,fechaEmpresa,false));
+                if ( ingresado ){
                     txt1.setText(null);
                     txt2.setText(null);
                     txt3.setText(null);
@@ -181,7 +179,8 @@ public class Interfaz extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
-                new InterfazTabla();
+                MyTableModel.createAndShowGUI();
+
             }
         });
 
@@ -193,7 +192,11 @@ public class Interfaz extends JFrame {
             public void run() {
                 Interfaz ventana = new Interfaz();
                 ventana.setSize(500,500);
+                ventana.setVisible(true);
+
             }
         });
     }
+
+
 }

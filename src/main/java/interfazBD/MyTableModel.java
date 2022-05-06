@@ -2,7 +2,10 @@ package interfazBD;
 
 import interfazBD.Trabajador;
 
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +13,7 @@ import java.util.Arrays;
 public class MyTableModel extends AbstractTableModel {
 
     private final String[] columNames = {"DNI", "Nombre" ,"Puesto", "Fecha_Nacimiento" ,"Direccion",
-            "Telefono", "Salario", "Fecha_Com_Empresa"  };
+            "Telefono", "Salario", "Fecha_Com_Empresa", "Verificar"};
 
     private static final int dni = 0;
     private static final int nombre = 1;
@@ -20,14 +23,15 @@ public class MyTableModel extends AbstractTableModel {
     private static final int telefono = 5;
     private static final int salario = 6;
     private static final int fecha_con_empresa = 7;
+    private static final int jc = 8;
 
-    private static Trabajador[] data_Trabajadores;
 
-    private ArrayList<Trabajador> al_trabajadores = new ArrayList<>(Arrays.asList(data_Trabajadores));
+
+    private ArrayList<Trabajador> al_trabajadores = TrabajadorBD.solicitarTablaTrabajadores();
 
     @Override
     public int getRowCount() {
-        return data_Trabajadores.length;
+        return al_trabajadores.size();
     }
 
     @Override
@@ -35,13 +39,13 @@ public class MyTableModel extends AbstractTableModel {
         return columNames.length;
     }
 
-    public String getColimnName(int col){
+    public String getColumnName(int col){
         return columNames[col];
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Trabajador t = data_Trabajadores[rowIndex];
+        Trabajador t = al_trabajadores.get(rowIndex);
         switch (columnIndex){
             case dni: return t.getDni();
             case nombre: return t.getNombre();
@@ -51,11 +55,12 @@ public class MyTableModel extends AbstractTableModel {
             case telefono: return t.getTelefono();
             case salario: return t.getSalario();
             case fecha_con_empresa: return t.getFechaComienzoEmpresa();
+            case jc: return t.isVerificar();
             default: return "";
         }
     }
 
-    public Class<?> getColumClass(int c){
+    public Class getColumnClass(int c){
         return getValueAt(0,c).getClass();
     }
 
@@ -64,4 +69,23 @@ public class MyTableModel extends AbstractTableModel {
     }
 
 
+    public static void createAndShowGUI() {
+        JFrame frame = new JFrame("Tabla ALD");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        TableSortDemo newContentPane = new TableSortDemo();
+        frame.setContentPane(newContentPane);
+
+        JButton salir = new JButton("Salir");
+        frame.add(salir);
+        salir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConexionBD.cerrarConexion();
+                System.exit(0);
+            }
+        });
+        frame.setSize(600,500);
+        frame.setVisible(true);
+    }
 }

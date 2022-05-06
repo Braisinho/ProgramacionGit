@@ -45,7 +45,7 @@ public class TrabajadorBD {
             while (rs.next()) {
                 tr = new Trabajador(rs.getString("DNI"),rs.getString("Nombre"),rs.getString("Puesto"),
                         rs.getDate("Fecha_Nacimiento"),rs.getString("Direccion"),rs.getString("Telefono"),
-                        rs.getDouble("Salario"),rs.getDate("Fecha_com_Empresa"));
+                        rs.getDouble("Salario"),rs.getDate("Fecha_com_Empresa"), false);
             }
 
         } catch (SQLException e) {
@@ -60,13 +60,14 @@ public class TrabajadorBD {
         Trabajador tr = null;
         ArrayList<Trabajador> arraySalida = new ArrayList<>();
         ResultSet rs = null;
+
         try {
             stmt = connection.createStatement();
             rs = stmt.executeQuery("SELECT * from Trabajador");
             while (rs.next()) {
                 arraySalida.add(new Trabajador(rs.getString("DNI"),rs.getString("Nombre"),rs.getString("Puesto"),
                         rs.getDate("Fecha_Nacimiento"),rs.getString("Direccion"),rs.getString("Telefono"),
-                        rs.getDouble("Salario"),rs.getDate("Fecha_com_Empresa")));
+                        rs.getDouble("Salario"),rs.getDate("Fecha_com_Empresa"), rs.getBoolean("Verificar")));
             }
         }catch (SQLException ex) {
             ex.printStackTrace();

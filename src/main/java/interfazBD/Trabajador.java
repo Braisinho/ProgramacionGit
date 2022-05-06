@@ -11,9 +11,10 @@ public class Trabajador {
     private String telefono;
     private double salario;
     private Date fechaComienzoEmpresa;
+    private boolean verificar;
 
 
-    public Trabajador(String dni, String nombre, String puesto, Date fechaNacimiento, String direccion, String telefono, double salario, Date fechaComienzoEmpresa) {
+    public Trabajador(String dni, String nombre, String puesto, Date fechaNacimiento, String direccion, String telefono, double salario, Date fechaComienzoEmpresa, boolean verificar) {
         this.dni = dni;
         this.nombre = nombre;
         this.puesto = puesto;
@@ -22,6 +23,7 @@ public class Trabajador {
         this.telefono = telefono;
         this.salario = salario;
         this.fechaComienzoEmpresa = fechaComienzoEmpresa;
+        this.verificar = verificar;
     }
 
     public String getDni() {
@@ -88,5 +90,11 @@ public class Trabajador {
         this.fechaComienzoEmpresa = fechaComienzoEmpresa;
     }
 
+    public boolean isVerificar() {
+        return verificar;
+    }
 
+    public void setVerificar(boolean verificar) {
+        this.verificar = verificar;
+    }
 }
