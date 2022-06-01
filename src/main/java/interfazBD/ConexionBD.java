@@ -20,7 +20,7 @@ public class ConexionBD {
     public static Connection getInstance(){
         if ( con == null ){
             new ConexionBD();
-        }
+        } 
         return con;
     }
 

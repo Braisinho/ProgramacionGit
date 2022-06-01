@@ -1,14 +1,12 @@
 package interfazBD;
 
-import interfazBD.Trabajador;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class MyTableModel extends AbstractTableModel {
 
