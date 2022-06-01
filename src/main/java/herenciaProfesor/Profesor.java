@@ -11,4 +11,12 @@ public abstract class Profesor extends Persona{
 
     abstract float calcularNomina();
 
+
+
+    @Override
+    public String toString() {
+        return "Profesor " + super.getNombre();
+    }
+
+
 }
